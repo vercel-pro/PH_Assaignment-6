@@ -42,7 +42,7 @@ export const sendEmail = async ({
 		return info;
 	} catch (error: any) {
 		throw new AppError(
-			httpStatus.BAD_REQUEST,
+			httpStatus.SERVICE_UNAVAILABLE,
 			`Email could not be sent: ${error.message}`,
 		);
 	}
