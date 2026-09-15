@@ -1,0 +1,51 @@
+model User {
+  id           String  @id @default(uuid()) @db.Uuid
+  name         String
+  email        String  @unique
+  emailVerified Boolean @default(false)
+  password     String?
+  profileImage String?
+  phone        String?
+  department   String?
+  designation  String?
+
+  role         UserRole     @default(EMPLOYEE)
+  status       UserStatus   @default(ACTIVE)
+  
+  authProvider AuthProvider @default(EMAIL)
+  googleId     String?      @unique
+
+  isActive Boolean @default(true)
+  needPasswordChange Boolean @default(false)
+
+  isDeleted Boolean   @default(false)
+  deletedAt DateTime?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+ // Profile
+  profile UserProfile?
+
+  // Relations
+  assetAssignments AssetAssignment[] @relation("EmployeeAssignments")
+  assignedAssets   AssetAssignment[] @relation("AssignedBy")
+
+  assetRequests         AssetRequest[] @relation("EmployeeRequests")
+  reviewedAssetRequests AssetRequest[] @relation("RequestReviewer")
+
+  assetPurchases AssetPurchase[]
+  payments       Payment[]
+
+  maintenanceRecordsReported MaintenanceRecord[] @relation("MaintenanceReportedBy")
+
+  notifications Notification[]
+  auditLogs     AuditLog[]
+  refreshTokens RefreshToken[]
+
+  @@index([email])
+  @@index([role])
+  @@index([department])
+  @@index([isActive])
+  @@map("users")
+}
