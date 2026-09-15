@@ -23,22 +23,22 @@ const main = async () => {
 		// await transporter.verify();
 		// console.log("Nodemailer connected successfully.");
 		// 4. Check SMTP separately
-		transporter.verify((error) => {
-			if (error) {
-				console.error("SMTP connection failed:", error.message);
-			} else {
-				console.log("SMTP server is ready");
-			}
-		});
-
+		
 		// seedSuperAdmin();
 		// seedTesterAdmin();
 		// seedTesterDoctor();
 		// await deleteUnverifiedDoctors();
 		// await deleteRejectedDoctors();
 
-		app.listen(PORT, () => {
+		app.listen(PORT, "0.0.0.0", () => {
 			console.log(`Server is running on port http://localhost:${PORT}`);
+		});
+		transporter.verify((error) => {
+			if (error) {
+				console.error("SMTP connection failed:", error.message);
+			} else {
+				console.log("SMTP server is ready");
+			}
 		});
 	} catch (error) {
 		console.error("Error starting the server:", error);
