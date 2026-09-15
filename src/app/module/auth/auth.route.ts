@@ -16,7 +16,7 @@ const router = Router();
 
 router.post(
 	"/register",
-	validateRequest(UserRegisterZodSchema),
+	// validateRequest(UserRegisterZodSchema),
 	AuthController.userRegister,
 );
 
