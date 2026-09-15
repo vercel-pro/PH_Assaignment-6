@@ -30,7 +30,7 @@ const main = async () => {
 		// await deleteUnverifiedDoctors();
 		// await deleteRejectedDoctors();
 
-		app.listen(PORT, "0.0.0.0", () => {
+		app.listen(PORT, () => {
 			console.log(`Server is running on port http://localhost:${PORT}`);
 		});
 		transporter.verify((error) => {
