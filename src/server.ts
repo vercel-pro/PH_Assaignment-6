@@ -20,8 +20,16 @@ const main = async () => {
 		await redisClient.connect();
 		console.log("REDIS database connected to the successfully.");
 
-		await transporter.verify();
-		console.log("Nodemailer connected successfully.");
+		// await transporter.verify();
+		// console.log("Nodemailer connected successfully.");
+		// 4. Check SMTP separately
+		transporter.verify((error) => {
+			if (error) {
+				console.error("SMTP connection failed:", error.message);
+			} else {
+				console.log("SMTP server is ready");
+			}
+		});
 
 		// seedSuperAdmin();
 		// seedTesterAdmin();
