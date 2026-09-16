@@ -16,13 +16,13 @@ const router = Router();
 
 router.post(
 	"/register",
-	// validateRequest(UserRegisterZodSchema),
+	validateRequest(UserRegisterZodSchema),
 	AuthController.userRegister,
 );
 
 router.post(
 	"/verifyEmail",
-	validateRequest(UserEmailVerifyZodSchema),
+	// validateRequest(UserEmailVerifyZodSchema),
 	AuthController.verifyUserEmail,
 );
 router.post("/google", AuthController.googleLoginController);
